@@ -54,9 +54,9 @@ export default function App() {
   };
 
   return (
-    <>
+    <View style={styles.container}>
       <StatusBar style="auto" />
-      <View style={styles.container}>
+      <View style={styles.div}>
         {!userData && (
           <AppleAuthentication.AppleAuthenticationButton
             buttonType={
@@ -71,15 +71,20 @@ export default function App() {
           />
         )}
       </View>
-      <View style={styles.container}>
-        {userData && (
-          <Text>{`${userData.fullName.givenName} ${userData.fullName.familyName}`}</Text>
-        )}
-      </View>
-      <View style={styles.container}>
-        {userData && <Text>{`${userData.email}`}</Text>}
-      </View>
-    </>
+      {userData && (
+        <>
+          <View style={styles.div}>
+            <Text>{`${userData.fullName.givenName} ${userData.fullName.familyName}`}</Text>
+          </View>
+          <View style={styles.div}>
+            <Text>{`${userData.email}`}</Text>
+          </View>
+          <View style={styles.div}>
+            <Text>{`${userData.user}`}</Text>
+          </View>
+        </>
+      )}
+    </View>
   );
 }
 
@@ -89,5 +94,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  div: {
+    backgroundColor: "#fff",
   },
 });
